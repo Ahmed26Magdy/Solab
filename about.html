@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Solab</title>
+    <link rel="stylesheet" href="css/about.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script defer src="js/script.js"></script>
+</head>
+<body>
+
+    <header>
+        <div class="header-left">
+            <h1><a href="index.html">Solab</a></h1>
+        </div>
+        <div class="header-middle">
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="ask.html">AskSolab</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="header-right">
+            <div class="cart">
+                <a href="cart.html"><i class="fas fa-shopping-cart"></i></a>
+            </div>
+            <div class="account">
+                <i class="fas fa-user"></i>
+                <div class="account-dropdown">
+                    <a href="login.html">Login</a>
+                    <a href="register.html">Register</a>
+                    <a href="profile.html">Profile</a>
+                    <a href="logout.html">Logout</a>
+                </div>
+            </div>
+        </div>
+        <div class="mobile-menu">
+            <i class="fas fa-bars"></i>
+        </div>
+    </header>
+
+    <main>
+        <section class="about-us">
+            <div class="about-container">
+                <h2>About Us</h2>
+                <p>At Solab, we are passionate about pets and dedicated to providing the highest quality products and services. Our mission is to enhance the lives of pets and their owners through innovative solutions and expert advice.</p>
+                <p>Founded in 2020, Solab has quickly grown to become a trusted name in the pet care industry. We believe that pets are family, and we are committed to offering products that keep them healthy, happy, and thriving.</p>
+                <p>Our team is made up of pet enthusiasts and professionals who are dedicated to researching and sourcing the best products on the market. From nutritious food to fun toys and essential accessories, we have everything you need to take the best care of your furry friends.</p>
+                <p>At Solab, we are not just a business; we are a community of pet lovers. We are here to provide support, answer your questions, and help you make informed decisions about your pet's well-being. Thank you for choosing Solab. We look forward to serving you and your pets!</p>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        fetch('footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.body.insertAdjacentHTML('beforeend', data);
+            });
+    </script>
+
+</body>
+</html>

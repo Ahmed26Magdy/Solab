@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solab - Edit Profile</title>
+    <link rel="stylesheet" href="css/edit-profile.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="header-left">
+            <h1><a href="index.html">Solab</a></h1>
+        </div>
+    </header>
+    
+    <main>
+        <section class="edit-profile-container">
+            <h2>Edit Profile</h2>
+            <form action="/update-profile" method="POST">
+                <div class="input-group">
+                    <label for="avatar">Profile Picture</label>
+                    <input type="file" id="avatar" name="avatar">
+                </div>
+                <div class="input-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" value="ahmedmagdy" required>
+                </div>
+                <div class="input-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" value="ahmed.magdy@example.com" required>
+                </div>
+                <div class="input-group">
+                    <label for="current-password">Current Password</label>
+                    <input type="password" id="current-password" name="current-password" required>
+                </div>
+                <div class="input-group">
+                    <label for="new-password">New Password</label>
+                    <input type="password" id="new-password" name="new-password">
+                </div>
+                <div class="input-group">
+                    <label for="confirm-password">Confirm New Password</label>
+                    <input type="password" id="confirm-password" name="confirm-password">
+                </div>
+                <button type="submit">Save Changes</button>
+                <a href="profile.html" class="cancel">Cancel</a>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Solab. All rights reserved.</p>
+    </footer>
+</body>
+</html>

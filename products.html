@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solab - Products</title>
+    <link rel="stylesheet" href="css/Products.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script defer src="js/script.js"></script>
+</head>
+<body>
+
+    <header>
+        <div class="header-left">
+            <h1><a href="index.html">Solab</a></h1>
+        </div>
+        <div class="header-middle">
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="ask.html">AskSolab</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="header-right">
+            <div class="cart">
+                <a href="cart.html"><i class="fas fa-shopping-cart"></i></a>
+            </div>
+            <div class="account">
+                <i class="fas fa-user"></i>
+                <div class="account-dropdown">
+                    <a href="login.html">Login</a>
+                    <a href="register.html">Register</a>
+                    <a href="profile.html">Profile</a>
+                    <a href="logout.html">Logout</a>
+                </div>
+            </div>
+        </div>
+        <div class="mobile-menu">
+            <i class="fas fa-bars"></i>
+        </div>
+    </header>
+
+    <main>
+        <section class="filters">
+            <label for="pet-type">Pet Type:</label>
+            <select id="pet-type">
+                <option value="all">All</option>
+                <option value="dogs">Dogs</option>
+                <option value="cats">Cats</option>
+            </select>
+
+            <label for="product-category">Category:</label>
+            <select id="product-category">
+                <option value="all">All</option>
+                <option value="food">Food</option>
+                <option value="toys">Toys</option>
+                <option value="grooming">Grooming</option>
+            </select>
+        </section>
+
+        <section class="products">
+            <h2>Our Products</h2>
+            <div class="products-container">
+                <!-- Example Product Card -->
+                <div class="product-card">
+                    <img src="img/product1.jpg" alt="Product 1" onclick="openQuickView('Product 1', '10.99', 'img/product1.jpg')">
+                    <h3>Dog Food</h3>
+                    <p>$10.99</p>
+                    <button onclick="addToCart('Dog Food', 10.99)">Add to Cart</button>
+                </div>
+                
+                <div class="product-card">
+                    <img src="img/product2.jpg" alt="Product 2" onclick="openQuickView('Product 2', '12.99', 'img/product2.jpg')">
+                    <h3>Cat Toy</h3>
+                    <p>$12.99</p>
+                    <button onclick="addToCart('Cat Toy', 12.99)">Add to Cart</button>
+                </div>
+                
+                <div class="product-card">
+                    <img src="img/product3.jpg" alt="Product 3" onclick="openQuickView('Product 3', '15.99', 'img/product3.jpg')">
+                    <h3>Dog Bed</h3>
+                    <p>$15.99</p>
+                    <button onclick="addToCart('Dog Bed', 15.99)">Add to Cart</button>
+                </div>
+                
+                <div class="product-card">
+                    <img src="img/product4.jpg" alt="Product 4" onclick="openQuickView('Product 4', '8.99', 'img/product4.jpg')">
+                    <h3>Cat Collar</h3>
+                    <p>$8.99</p>
+                    <button onclick="addToCart('Cat Collar', 8.99)">Add to Cart</button>
+                </div>
+                
+                <div class="product-card">
+                    <img src="img/product5.jpg" alt="Product 5" onclick="openQuickView('Product 5', '20.99', 'img/product5.jpg')">
+                    <h3>Dog Leash</h3>
+                    <p>$20.99</p>
+                    <button onclick="addToCart('Dog Leash', 20.99)">Add to Cart</button>
+                </div>
+                
+                
+                <!-- Add more product cards as needed -->
+            </div>
+        </section>
+
+        <!-- Quick View Modal -->
+        <div id="quick-view-modal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeQuickView()">&times;</span>
+                <img id="modal-image" src="" alt="Product Image">
+                <h3 id="modal-title">Product Title</h3>
+                <p id="modal-price">$0.00</p>
+                <p id="modal-description">Product description goes here.</p>
+                <button onclick="addToCart('Product Title', 0)">Add to Cart</button>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        fetch('footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.body.insertAdjacentHTML('beforeend', data);
+            });
+
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        function addToCart(product, price) {
+            cart.push({ product, price });
+            localStorage.setItem('cart', JSON.stringify(cart));
+            alert(`${product} has been added to the cart`);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const cartIcon = document.querySelector('.header-right .cart');
+            if (!userHasAccount) {
+                cartIcon.style.display = 'none';
+            }
+
+            // Handle account dropdown toggle
+            const accountIcon = document.querySelector('.header-right .account');
+            const dropdown = document.querySelector('.account-dropdown');
+
+            if (accountIcon && dropdown) {
+                accountIcon.addEventListener('click', (event) => {
+                    dropdown.classList.toggle('show');
+                    event.stopPropagation();
+                });
+
+                window.addEventListener('click', (event) => {
+                    if (!dropdown.contains(event.target) && !accountIcon.contains(event.target)) {
+                        dropdown.classList.remove('show');
+                    }
+                });
+            }
+        });
+
+        // Filter Functionality
+        document.getElementById('pet-type').addEventListener('change', filterProducts);
+        document.getElementById('product-category').addEventListener('change', filterProducts);
+
+        function filterProducts() {
+            const petType = document.getElementById('pet-type').value;
+            const category = document.getElementById('product-category').value;
+
+            // Implement filtering logic here (e.g., hide/show products based on selection)
+        }
+
+        // Quick View Modal Functions
+        function openQuickView(title, price, imageSrc) {
+            document.getElementById('modal-title').innerText = title;
+            document.getElementById('modal-price').innerText = `$${price}`;
+            document.getElementById('modal-image').src = imageSrc;
+            document.getElementById('quick-view-modal').style.display = 'block';
+        }
+
+        function closeQuickView() {
+            document.getElementById('quick-view-modal').style.display = 'none';
+        }
+    </script>
+</body>
+</html>

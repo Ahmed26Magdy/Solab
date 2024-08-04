@@ -1,0 +1,97 @@
+/* Common Styles */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #eeeeee;
+    color: #333;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #8ccce2;
+    color: white;
+    padding: 10px 20px;
+    font-size: 20px;
+}
+
+.header-left h1 a {
+    text-decoration: none;
+    color: white;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    padding: 20px;
+}
+
+.logout-container {
+    background-color: #ffffff; /* Solid background for better visibility */
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+    padding: 30px;
+    text-align: center;
+    border: 1px solid #8ccce2; /* Border color matching the header/footer */
+}
+
+.logout-container h2 {
+    margin-bottom: 20px;
+    font-size: 28px;
+    color: #333;
+}
+
+.logout-container p {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 30px;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background-color: #8ccce2; /* Matches the header/footer color */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+    background-color: #7bb7d1; /* Slightly darker shade for hover effect */
+    transform: scale(1.02);
+}
+
+.cancel {
+    display: block;
+    margin-top: 15px;
+    font-size: 15px;
+    color: #8ccce2; /* Matches the header/footer color */
+    text-decoration: none;
+}
+
+.cancel:hover {
+    text-decoration: underline;
+}
+
+footer {
+    background-color: #3f3f3f;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+}
+
+footer p {
+    margin: 0;
+}

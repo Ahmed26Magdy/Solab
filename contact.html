@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Solab</title>
+    <link rel="stylesheet" href="css/contact.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+    <header>
+        <div class="header-left">
+            <h1><a href="index.html">Solab</a></h1>
+        </div>
+        <div class="header-middle">
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="ask.html">AskSolab</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="header-right">
+            <div class="cart">
+                <a href="cart.html"><i class="fas fa-shopping-cart"></i></a>
+            </div>
+            <div class="account">
+                <i class="fas fa-user"></i>
+                <div class="account-dropdown">
+                    <a href="login.html">Login</a>
+                    <a href="register.html">Register</a>
+                    <a href="profile.html">Profile</a>
+                    <a href="logout.html">Logout</a>
+                </div>
+            </div>
+        </div>
+        <div class="mobile-menu">
+            <i class="fas fa-bars"></i>
+        </div>
+    </header>
+
+    <main>
+        <section class="contact-us">
+            <h2>Contact Us</h2>
+            <p>We'd love to hear from you! Whether you have a question about our products, need assistance, or just want to share your pet's story, we're here to help.</p>
+            <form action="#" method="post">
+                <label for="name">Your Name:</label>
+                <input type="text" id="name" name="name" required>
+                
+                <label for="email">Your Email:</label>
+                <input type="email" id="email" name="email" required>
+                
+                <label for="message">Your Message:</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+                
+                <button type="submit">Submit</button>
+            </form>
+        </section>
+    </main>
+
+    <script>
+        fetch('footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.body.insertAdjacentHTML('beforeend', data);
+            });
+    </script>
+    
+    <script>
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        function addToCart(product, price) {
+            cart.push({ product, price });
+            localStorage.setItem('cart', JSON.stringify(cart));
+            alert(`${product} has been added to the cart`);
+        }
+        
+        // Account check for cart visibility
+        let userHasAccount = true; 
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const cartIcon = document.querySelector('.header-right .cart');
+            if (!userHasAccount) {
+                cartIcon.style.display = 'none';
+            }
+        });
+
+        // Handle account dropdown toggle
+        const accountIcon = document.querySelector('.header-right .account');
+        const dropdown = document.querySelector('.account-dropdown');
+
+        if (accountIcon && dropdown) {
+            accountIcon.addEventListener('click', (event) => {
+                dropdown.classList.toggle('show');
+                event.stopPropagation();
+            });
+
+            window.addEventListener('click', (event) => {
+                if (!dropdown.contains(event.target) && !accountIcon.contains(event.target)) {
+                    dropdown.classList.remove('show');
+                }
+            });
+        }
+    </script>
+</body>
+</html>
